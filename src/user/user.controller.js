@@ -16,10 +16,10 @@ const userControlller = async(req,res)=>{
 
 const handleUser = async(req,res)=>{
     let { error } = schema.validate(req.body , {abortEarly: false})
-    if(!error.details){
+    if(!error?.details){
         await messageModel.insertMany({receiveId:req.params.id,message:req.body.message})
 
-        res.redirect(`/user/${req.params.id}`)
+       return res.redirect(`/user/${req.params.id}`)
     }
     req.flash("info",error.details)
     res.redirect(`/user/${req.params.id}`)
