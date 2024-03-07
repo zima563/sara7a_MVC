@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarahah</title>
+    <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-custom navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="img/logo300.png" width="54" alt=""> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     Menu <span class="navbar-toggler-icon"></span>
+    </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- /navbar -->
+
+    <div class="container text-center my-5">
+        <div class="user my-3">
+            <i class="far fa-edit user-icon"></i>
+            <h4 class="login">Register</h4>
+        </div>
+        <div class="card p-5 w-50 m-auto">
+            <form method="POST" action="/handleLogin">
+                <input class="form-control" placeholder="Enter your Name" type="text" name="name">
+                <input class="form-control my-2 " placeholder="Enter your email" type="email" name="email">
+                <input class="form-control  " placeholder="Enter your Password" type="password" name="password">
+                <input class="form-control  my-2" placeholder="Password Confirmation" type="password" name="PasswordConfirmation">
+                <button class="btn btn-default-outline my-4 w-100 rounded">Register</button>
+                <a class="btn btn-default-outline" href="login.html">Login</a>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
