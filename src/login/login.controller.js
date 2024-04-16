@@ -1,4 +1,5 @@
 import Jwt from "jsonwebtoken"
+import bcrypt from "bcrypt"
 import { userModel } from "../../databases/models/userModel.js"
 
 const loginControlller = (req,res)=>{
@@ -8,7 +9,7 @@ const loginControlller = (req,res)=>{
 const handleLogin =async (req,res)=>{
     let user = await userModel.findOne({email:req.body.email});
     if(!user) return res.redirect("/login?error=invalid eamil or password");
-    if(user.password!==req.body.password) return res.redirect("/login?error=invalid eamil or password"); 
+    if (!(bcrypt.compareSync(req.body.password, user.password))) return res.redirect("/login?error=invalid eamil or password"); 
 
 
     let token = Jwt.sign({ userId: user._id, isLoggedIn: true, userName: user.name }, process.env.JWT_KEY);

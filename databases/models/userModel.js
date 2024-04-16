@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bcrypt from "bcrypt"
 const schema = new mongoose.Schema(
   {
     name: String,
@@ -34,5 +34,9 @@ const schema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+schema.pre("save", function () {
+  if (this.password) this.password = bcrypt.hashSync(this.password, 8);
+});
 
 export const userModel = mongoose.model("user", schema);

@@ -17,7 +17,9 @@ const handleRegister = async(req,res)=>{
     let { error } = schema.validate(req.body , {abortEarly: false})
 
     if(!error?.details) {
-        await userModel.insertMany(req.body);
+
+        let user = new userModel(req.body);
+        await user.save();
         return res.redirect("/login")
     }
     req.flash("info",error?.details)
