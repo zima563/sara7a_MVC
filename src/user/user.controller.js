@@ -1,3 +1,4 @@
+import Crypto from "crypto-js"
 import { messageModel } from "../../databases/models/messageModel.js"
 import { userModel } from "../../databases/models/userModel.js"
 
@@ -17,7 +18,14 @@ const userControlller = async(req,res)=>{
 const handleUser = async(req,res)=>{
     let { error } = schema.validate(req.body , {abortEarly: false})
     if(!error?.details){
-        await messageModel.insertMany({receiveId:req.params.id,message:req.body.message})
+        // Key for encryption (must be 24 bytes)
+        const key = Crypto.enc.Hex.parse("0123456789abcdef0123456789abcdef0123456789abcdef");
+        const messageCrypt = Crypto.TripleDES.encrypt(req.body.message, key, {
+            mode: Crypto.mode.ECB, // Electronic Codebook mode
+            padding: Crypto.pad.Pkcs7 // Padding scheme
+        })
+
+        await messageModel.insertMany({ receiveId: req.params.id, message: messageCrypt })
 
        return res.redirect(`/user/${req.params.id}`)
     }

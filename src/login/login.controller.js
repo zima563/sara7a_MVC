@@ -1,3 +1,4 @@
+import Jwt from "jsonwebtoken"
 import { userModel } from "../../databases/models/userModel.js"
 
 const loginControlller = (req,res)=>{
@@ -9,9 +10,9 @@ const handleLogin =async (req,res)=>{
     if(!user) return res.redirect("/login?error=invalid eamil or password");
     if(user.password!==req.body.password) return res.redirect("/login?error=invalid eamil or password"); 
 
-    req.session.isLoggedIn = true;
-    req.session.user_id = user._id
-    req.session.name = user.name
+
+    let token = Jwt.sign({ userId: user._id, isLoggedIn: true, userName: user.name }, process.env.JWT_KEY);
+    req.session.token = token;
 
     res.redirect("/message")
 }
