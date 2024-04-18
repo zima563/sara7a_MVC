@@ -5,6 +5,7 @@ const schema = new mongoose.Schema(
     name: String,
     email: String,
     password: String,
+    isLoggedIn: Boolean,
     age: {
       type: Number,
       min: 10,
