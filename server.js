@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(session({
   secret: "keybord cat",
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store
 }))
 

@@ -3,7 +3,7 @@ import { userModel } from "../../databases/models/userModel.js";
 const protectRoutes = async (req, res, next) => {
     let token = req.session.token
 
-    if (!token) return next(new apiError("not token provide", 401));
+    if (!token) return res.redirect("/login")
 
     let decoded = Jwt.verify(token, process.env.JWT_KEY);
     let user = await userModel.findById(decoded.userId);
