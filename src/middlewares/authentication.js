@@ -22,6 +22,7 @@ const protectRoutes = async (req, res, next) => {
     //         return next(new apiError("invalid token..please login", 401));
     // }
     req.user = user;
+
     next();
 };
 
